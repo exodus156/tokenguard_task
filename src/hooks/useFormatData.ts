@@ -14,10 +14,24 @@ export const useFormatData = ({
 		plugins: {
 			legend: {
 				position: 'top' as const,
+				labels: {
+					color: '#345427',
+					font: {
+						weight: 600,
+						size: 16,
+					},
+					padding: 10,
+					boxHeight: 20,
+				},
 			},
 			title: {
 				display: true,
+				color: '#345427',
 				text: 'Blockchain to Cumulative Data Line Chart',
+				font: {
+					weight: 700,
+					size: 26,
+				},
 			},
 		},
 	}

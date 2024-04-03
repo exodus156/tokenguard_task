@@ -8,8 +8,8 @@ import {
 	Tooltip,
 	Legend,
 } from 'chart.js'
-import { Line } from 'react-chartjs-2'
-import { useFormatData, useGetGraphData } from './hooks'
+import { useGetGraphData } from './hooks'
+import { LineGraph } from 'components'
 
 ChartJS.register(
 	CategoryScale,
@@ -29,26 +29,17 @@ function App() {
 		isLoading,
 		errorMessage,
 	} = useGetGraphData()
-	const { chartOptions, graphData } = useFormatData({
-		labels,
-		blockchainData: blockchainValues,
-		cumulativeData: cumulativeValues,
-	})
 
-	console.log(errorMessage, graphData)
+	console.log(errorMessage)
 
 	return (
-		<div className="flex flex-col justify-center items-center h-[100vh] px-20 bg-green-50">
-			<div className="w-full mb-8">
-				{isLoading ? (
-					'LOADING DATA'
-				) : (
-					<Line
-						options={chartOptions}
-						data={graphData}
-					/>
-				)}
-			</div>
+		<div className="flex flex-col items-center h-[100vh] px-4 py-2 bg-green-50">
+			<LineGraph
+				labels={labels}
+				blockchainValues={blockchainValues}
+				cumulativeValues={cumulativeValues}
+				isLoading={isLoading}
+			/>
 		</div>
 	)
 }
