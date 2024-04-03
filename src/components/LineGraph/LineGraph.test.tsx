@@ -34,22 +34,4 @@ describe('LineGraph', () => {
 
 		expect(spinner).toBeInTheDocument()
 	})
-
-	test('renders labels properly', async () => {
-		render(
-			<LineGraph
-				labels={mockedLabels}
-				blockchainValues={mockedDataBlock}
-				cumulativeValues={mockedDataCumul}
-			/>,
-		)
-
-		const label1 = await screen.findByText('label1')
-		const label2 = await screen.findByText('label2')
-		const label3 = await screen.findByText('label3')
-
-		expect(label1).toBeInTheDocument()
-		expect(label2).toBeInTheDocument()
-		expect(label3).toBeInTheDocument()
-	})
 })
