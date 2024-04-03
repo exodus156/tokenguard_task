@@ -1,36 +1,54 @@
-import { useEffect } from 'react'
+import {
+	Chart as ChartJS,
+	CategoryScale,
+	LinearScale,
+	PointElement,
+	LineElement,
+	Title,
+	Tooltip,
+	Legend,
+} from 'chart.js'
+import { Line } from 'react-chartjs-2'
+import { useFormatData, useGetGraphData } from './hooks'
+
+ChartJS.register(
+	CategoryScale,
+	LinearScale,
+	PointElement,
+	LineElement,
+	Title,
+	Tooltip,
+	Legend,
+)
 
 function App() {
-	const fetchData = async () => {
-		const apiUrl =
-			'https://api.tokenguard.io/db-api/growth-index/basic-timeline-data'
-		const apiBody = {
-			chainName: 'ethereum',
-			period: 'last year',
-			metric: 'tg_growth_index',
-			compareWith: ['solana'],
-		}
+	const {
+		labels,
+		blockchainValues,
+		cumulativeValues,
+		isLoading,
+		errorMessage,
+	} = useGetGraphData()
+	const { chartOptions, graphData } = useFormatData({
+		labels,
+		blockchainData: blockchainValues,
+		cumulativeData: cumulativeValues,
+	})
 
-		const data = await fetch(apiUrl, {
-			method: 'POST',
-			body: JSON.stringify(apiBody),
-			headers: {
-				'Content-Type': 'application/json',
-			},
-		})
-
-		const result = await data.json()
-
-		console.log(result)
-	}
-
-	useEffect(() => {
-		fetchData()
-	}, [])
+	console.log(errorMessage, graphData)
 
 	return (
-		<div className="flex justify-center items-center w-[100vw] h-[100vh]">
-			<div className="text-4xl">Test1234</div>
+		<div className="flex flex-col justify-center items-center h-[100vh] px-20 bg-green-50">
+			<div className="w-full mb-8">
+				{isLoading ? (
+					'LOADING DATA'
+				) : (
+					<Line
+						options={chartOptions}
+						data={graphData}
+					/>
+				)}
+			</div>
 		</div>
 	)
 }
