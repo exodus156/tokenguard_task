@@ -9,7 +9,7 @@ import {
 	Legend,
 } from 'chart.js'
 import { useGetGraphData } from './hooks'
-import { LineGraph } from 'components'
+import { LineGraph, RangeButtons } from 'components'
 
 ChartJS.register(
 	CategoryScale,
@@ -30,6 +30,8 @@ function App() {
 		errorMessage,
 	} = useGetGraphData()
 
+	const handleClick = () => {}
+
 	console.log(errorMessage)
 
 	return (
@@ -39,6 +41,18 @@ function App() {
 				blockchainValues={blockchainValues}
 				cumulativeValues={cumulativeValues}
 				isLoading={isLoading}
+			/>
+			<RangeButtons
+				onYearClick={handleClick}
+				onSixMonthsClick={handleClick}
+				onThreeMonthsClick={handleClick}
+				onFourWeeksClick={handleClick}
+				onThreeWeeksClick={handleClick}
+				onTwoWeeksClick={handleClick}
+				onWeekClick={handleClick}
+				onOwnRangeClick={handleClick}
+				onResetClick={handleClick}
+				isOwnRangeSelectionActive
 			/>
 		</div>
 	)
