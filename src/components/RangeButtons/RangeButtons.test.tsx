@@ -4,22 +4,9 @@ import { RangeButtons } from './RangeButtons'
 const mockedOnClick = jest.fn()
 const GRANULATION_TEXT = 'Select granulation range:'
 
-describe('Button', () => {
+describe('RangeButtons', () => {
 	test('redners buttons correctly', () => {
-		render(
-			<RangeButtons
-				onYearClick={mockedOnClick}
-				onSixMonthsClick={mockedOnClick}
-				onThreeMonthsClick={mockedOnClick}
-				onFourWeeksClick={mockedOnClick}
-				onThreeWeeksClick={mockedOnClick}
-				onTwoWeeksClick={mockedOnClick}
-				onWeekClick={mockedOnClick}
-				onOwnRangeClick={mockedOnClick}
-				onResetClick={mockedOnClick}
-				isOwnRangeSelectionActive={false}
-			/>,
-		)
+		render(<RangeButtons updateDataRange={mockedOnClick} />)
 
 		const buttons = screen.getAllByTestId('button')
 
@@ -27,20 +14,7 @@ describe('Button', () => {
 	})
 
 	test('redners text correctly', () => {
-		render(
-			<RangeButtons
-				onYearClick={mockedOnClick}
-				onSixMonthsClick={mockedOnClick}
-				onThreeMonthsClick={mockedOnClick}
-				onFourWeeksClick={mockedOnClick}
-				onThreeWeeksClick={mockedOnClick}
-				onTwoWeeksClick={mockedOnClick}
-				onWeekClick={mockedOnClick}
-				onOwnRangeClick={mockedOnClick}
-				onResetClick={mockedOnClick}
-				isOwnRangeSelectionActive={false}
-			/>,
-		)
+		render(<RangeButtons updateDataRange={mockedOnClick} />)
 
 		const text = screen.getByText(GRANULATION_TEXT)
 

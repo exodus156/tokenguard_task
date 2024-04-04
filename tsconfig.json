@@ -10,7 +10,11 @@
 			"components/*": ["./src/components/*"],
 			"components": ["./src/components"],
 			"hooks/*": ["./src/hooks/*"],
-			"hooks": ["./src/hooks"]
+			"hooks": ["./src/hooks"],
+			"types/*": ["./src/types/*"],
+			"types": ["./src/types"],
+			"utils/*": ["./src/utils/*"],
+			"utils": ["./src/utils"]
 		},
 
 		/* Bundler mode */

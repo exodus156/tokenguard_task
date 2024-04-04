@@ -1,12 +1,15 @@
 import { Line } from 'react-chartjs-2'
 import { Spinner } from 'components'
 import { useFormatData } from 'hooks'
+import { UpdateDataRange } from 'types'
 
 export type LineGraphProps = {
 	labels: string[]
 	blockchainValues: number[]
 	cumulativeValues: number[]
+	updateDataRange: UpdateDataRange
 	isLoading?: boolean
+	errorMessage?: string
 }
 
 export const LineGraph: React.FC<LineGraphProps> = ({
@@ -14,14 +17,19 @@ export const LineGraph: React.FC<LineGraphProps> = ({
 	blockchainValues,
 	cumulativeValues,
 	isLoading,
+	updateDataRange,
+	errorMessage,
 }) => {
 	const { chartOptions, graphData } = useFormatData({
 		labels,
 		blockchainData: blockchainValues,
 		cumulativeData: cumulativeValues,
+		updateDataRange,
 	})
 
 	if (isLoading) return <Spinner />
+
+	if (errorMessage && !isLoading) return
 
 	return (
 		<div
