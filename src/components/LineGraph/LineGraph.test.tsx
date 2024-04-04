@@ -4,6 +4,7 @@ import { LineGraph } from './LineGraph'
 const mockedLabels = ['label1', 'label2', 'label3']
 const mockedDataBlock = [1, 2, 3]
 const mockedDataCumul = [3, 2, 1]
+const mockedUpdateDateRange = jest.fn()
 
 describe('LineGraph', () => {
 	test('renders correctly', () => {
@@ -12,6 +13,7 @@ describe('LineGraph', () => {
 				labels={mockedLabels}
 				blockchainValues={mockedDataBlock}
 				cumulativeValues={mockedDataCumul}
+				updateDataRange={mockedUpdateDateRange}
 			/>,
 		)
 
@@ -27,6 +29,7 @@ describe('LineGraph', () => {
 				labels={mockedLabels}
 				blockchainValues={mockedDataBlock}
 				cumulativeValues={mockedDataCumul}
+				updateDataRange={mockedUpdateDateRange}
 			/>,
 		)
 

@@ -1,13 +1,17 @@
+import { UpdateDataRange } from 'types'
+
 type UseFormatDataProps = {
 	labels: string[]
 	blockchainData: number[]
 	cumulativeData: number[]
+	updateDataRange: UpdateDataRange
 }
 
 export const useFormatData = ({
 	labels,
 	blockchainData,
 	cumulativeData,
+	updateDataRange,
 }: UseFormatDataProps) => {
 	const chartOptions = {
 		responsive: true,
@@ -33,6 +37,13 @@ export const useFormatData = ({
 					size: 26,
 				},
 			},
+		},
+		onClick: (_e, activeElements) => {
+			if (!activeElements[0]?.index) return
+			updateDataRange({
+				variant: 'register-points',
+				point: labels[activeElements[0]?.index],
+			})
 		},
 	}
 

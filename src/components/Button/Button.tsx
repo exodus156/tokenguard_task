@@ -12,7 +12,7 @@ export const Button: React.FC<ButtonProps> = ({
 	return (
 		<button
 			type="button"
-			data-testId="button"
+			data-testid="button"
 			onClick={onClick}
 			className={`
 			text-white
